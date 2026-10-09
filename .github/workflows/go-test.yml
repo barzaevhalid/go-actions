@@ -39,12 +39,15 @@ jobs:
       run: go test -race -v ./...
   
   # Задание проверяет код на соответствие стилю и отсутствие логических ошибок
-  lint:
-    # Задание "lint" зависит от заданий "tests" и "tests-race" и будет выполнено после них
-    needs: [tests, tests-race]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Golangci-lint
-        uses: golangci/golangci-lint-action@v9.3.0
+    lint:
+      needs: [tests, tests-race]
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v4
+
+        - uses: actions/setup-go@v5
+
+        - name: Golangci-lint
+          uses: golangci/golangci-lint-action@v9.3.0
         with:
           version: v2.14.0
