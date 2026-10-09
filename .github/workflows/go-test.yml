@@ -9,8 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-go@v4
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v5
+      with:
+        cache: false
 
     - name: Build
       run: go build -v ./...
@@ -20,8 +22,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-go@v4
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v5
+      with:
+        cache: false
 
     - name: Test
       run: go test -v ./...
@@ -32,8 +36,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-go@v4
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v5
+      with:
+        cache: false
 
     - name: Test
       run: go test -race -v ./...
@@ -45,6 +51,8 @@ jobs:
       steps:
         - uses: actions/checkout@v4
         - uses: actions/setup-go@v5
+          with:
+            cache: false
 
         - name: Golangci-lint
           uses: golangci/golangci-lint-action@v9.3.0
