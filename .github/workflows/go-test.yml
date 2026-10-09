@@ -39,7 +39,7 @@ jobs:
       run: go test -race -v ./...
   
   # Задание проверяет код на соответствие стилю и отсутствие логических ошибок
-    lint:
+  lint:
       needs: [tests, tests-race]
       runs-on: ubuntu-latest
       steps:
